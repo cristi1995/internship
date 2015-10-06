@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
-<widget xmlns     = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "GuvernulRomaniei"
-        version   = "1.0.5">
-<!--<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="ro.gov.GuvernulRomaniei" version="1.0.5">-->
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="ro.gov.GuvernulRomaniei" version="1.0.5" />
 
 <manifest android:hardwareAccelerated="true" android:versionCode="5" android:versionName="1.4" android:windowSoftInputMode="adjustPan" package="ro.gov.govro" xmlns:android="http://schemas.android.com/apk/res/android" />
   <name>Guvernul României</name>
