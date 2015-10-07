@@ -1,5 +1,9 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="ro.gov.GuvernulRomaniei" version="1.0.4">
-<manifest android:hardwareAccelerated="true" android:versionCode="5" android:versionName="1.4" android:windowSoftInputMode="adjustPan" package="ro.gov.govro" xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="ro.gov.GuvernulRomaniei" version="1.0.5" >
+
+<manifest android:hardwareAccelerated="true" android:versionCode="5" android:versionName="1.4" android:windowSoftInputMode="adjustPan" package="ro.gov.govro" xmlns:android="http://schemas.android.com/apk/res/android" />
   <name>Guvernul României</name>
   <description>Aplicația Guvernul României reprezintă primul demers de acest tip implementat de Palatul Victoria prin intermediul Direcției Servicii Online și Design (DSOD) din cadrul Cancelariei Prim-Ministrului României.
 Scopul aplicației este de a facilita informarea coerentă și accesibilă a cetățenilor cu privire la activitatățile întreprinse de Guvernul României și de către Prim-ministrul. În acest sens, utilizatorii aplicației pot accesa în timp real știrile și noutățile prezentate de Guvern, agenda Prim-ministrului, biografiile tuturor membrilor Cabinetului, precum și actele normative discutate în cadrul ședințelor săptămânale și extraordinare de Guvern.
