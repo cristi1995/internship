@@ -14,6 +14,10 @@
 		getContent(pageNo);
     }
 	function getContent(pageNo){
+		//initialize 
+		var requestCallback = new MyRequestsCompleted({
+		    numRequest: 2
+		});
 		if (pageNo == 0) {
 			var myurl = 'http://gov.ro/ro/json-agenda';
 		} else {
@@ -22,8 +26,12 @@
 		$.ajax({
 		  dataType: "jsonp",
 		  url: myurl,
-		  type: 'GET',
-		  }).done(function ( data ) {
+		  type: 'GET',    
+		  success: function(data) {
+	        requestCallback.addCallbackToQueue(true, function() {
+	            alert('Im the first callback');
+	        });
+		  }}).done(function ( data ) {
 		   $.each(data.rez, function(i, item){
 		   	var date = Date.parse(item.data_publicarii.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
 		   	var dateString = date.getDate().toString() + date.getMonth().toString() + date.getFullYear().toString();
@@ -44,6 +52,17 @@
 			}
 			})
 		  });
+		    $.ajax({
+		  	dataType: "jsonp",
+		    url: 'http://posturi.gov.ro/feed/json',
+		    success: function(data) {
+		        requestCallback.addCallbackToQueue(true, function() {
+		            alert('Im the second callback');
+		        });
+		    }
+		}).done(function ( data ) {
+		   console.log(data)
+		  });
 	}	
 
 	function contentAgenda(item){
@@ -53,3 +72,33 @@
 		   		+ decodeEntities(item.continut.trim().replace(/\n/g,'<br />').replace(/\t/g,'&nbsp;&nbsp;&nbsp;')) + '</p></div></div>'
 	   	return content
 	}
+
+	var MyRequestsCompleted = (function() {
+    var numRequestToComplete, requestsCompleted, callBacks, singleCallBack;
+
+    return function(options) {
+        if (!options) options = {};
+
+        numRequestToComplete = options.numRequest || 0;
+        requestsCompleted = options.requestsCompleted || 0;
+        callBacks = [];
+        var fireCallbacks = function() {
+            alert("we're all complete");
+            for (var i = 0; i < callBacks.length; i++) callBacks[i]();
+        };
+        if (options.singleCallback) callBacks.push(options.singleCallback);
+
+        this.addCallbackToQueue = function(isComplete, callback) {
+            if (isComplete) requestsCompleted++;
+            if (callback) callBacks.push(callback);
+            if (requestsCompleted == numRequestToComplete) fireCallbacks();
+        };
+        this.requestComplete = function(isComplete) {
+            if (isComplete) requestsCompleted++;
+            if (requestsCompleted == numRequestToComplete) fireCallbacks();
+        };
+        this.setCallback = function(callback) {
+            callBacks.push(callBack);
+        };
+    };
+})();
